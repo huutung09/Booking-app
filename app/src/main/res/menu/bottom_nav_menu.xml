@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/bottomBarHome"
+        android:title="@string/home"
+        android:icon="@drawable/selector_home_main"/>
+    <item
+        android:id="@+id/bottomBarFavorite"
+        android:title="@string/favorite"
+        android:icon="@drawable/selector_favorite_main"/>
+    <item
+        android:id="@+id/bottomBarBookmark"
+        android:title="@string/bookmark"
+        android:icon="@drawable/selector_bookmark_main"/>
+
+    <item
+        android:id="@+id/bottomBarProfile"
+        android:title="@string/profile"
+        android:icon="@drawable/selector_profile_main"/>
+</menu>

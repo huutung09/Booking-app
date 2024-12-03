@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Booking"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+
+        <activity
+            android:name=".MainAct"
+            android:exported="true">
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity android:name=".SplashAct"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".account_screen.LoginAct"
+            android:exported="true">
+
+        </activity>
+
+        <activity android:name=".account_screen.RegisterAct"
+            android:exported="true">
+
+        </activity>
+
+        <activity android:name=".menu.MenuAct"
+            android:exported="true">
+
+        </activity>
+
+        <activity android:name=".detail_province.DetailProvinceAct"
+            android:exported="true">
+
+        </activity>
+
+        <activity android:name=".detail_hottrend.DetailHotTrend"
+            android:exported="true">
+
+        </activity>
+    </application>
+
+</manifest>

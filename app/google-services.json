@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1089397846466",
+    "project_id": "booking-mobile-a36d7",
+    "storage_bucket": "booking-mobile-a36d7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1089397846466:android:9fed8bc53a89c5f0b3665b",
+        "android_client_info": {
+          "package_name": "com.mtg.speedtest.speedcheck.internet.booking"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC11ZcBHlyhsaBdAHJ-4y6vqJHhm_1prAQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
