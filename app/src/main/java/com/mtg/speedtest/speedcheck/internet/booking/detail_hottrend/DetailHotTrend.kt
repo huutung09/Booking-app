@@ -3,6 +3,7 @@ package com.mtg.speedtest.speedcheck.internet.booking.detail_hottrend
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -15,155 +16,54 @@ import com.google.firebase.firestore.firestore
 import com.mtg.speedtest.speedcheck.internet.booking.R
 import com.mtg.speedtest.speedcheck.internet.booking.SingletonClass
 import com.mtg.speedtest.speedcheck.internet.booking.databinding.ActDetailHottrendBinding
+import com.mtg.speedtest.speedcheck.internet.booking.home_screen.HomeViewModel
 import com.mtg.speedtest.speedcheck.internet.booking.model.HotTrend
+import com.mtg.speedtest.speedcheck.internet.booking.model.response.TourItem
 
-class DetailHotTrend : AppCompatActivity(), OnMapReadyCallback {
+class DetailHotTrend : AppCompatActivity() {
     private lateinit var binding: ActDetailHottrendBinding
-    private lateinit var hotTrend: HotTrend
-    private lateinit var mMap: GoogleMap
-    private val db = Firebase.firestore
-    private val auth = Firebase.auth
+    private lateinit var hotTrend: TourItem
+    private lateinit var viewModel: DetailHotTrendViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActDetailHottrendBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        initMaps()
         initViews()
         initEvents()
     }
 
-    private fun initMaps() {
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        val mapFragment = supportFragmentManager.findFragmentById(R.id.mapHotTrendDetail) as SupportMapFragment
-        mapFragment.getMapAsync(this)
-    }
 
     private fun initEvents() {
         binding.imvBack.setOnClickListener {
             finish()
         }
-
-        binding.imvFavoriteHotTrendDetail.setOnClickListener {
-            if (hotTrend.isFavorite) {
-                hotTrend.isFavorite = false
-                removeFavorite()
-                binding.imvFavoriteHotTrendDetail.setImageResource(R.drawable.ic_favorite_deactivate)
-            } else {
-                hotTrend.isFavorite = true
-                setFavorite()
-                binding.imvFavoriteHotTrendDetail.setImageResource(R.drawable.ic_favorite_active)
-            }
-        }
-//
-        binding.imvBookmarkHotTrendDetail.setOnClickListener {
-            if (hotTrend.isBookMark) {
-                hotTrend.isBookMark = false
-                removeBookmark()
-                binding.imvBookmarkHotTrendDetail.setImageResource(R.drawable.ic_bookmark_deactivate)
-            } else {
-                hotTrend.isBookMark = true
-                setBookmark()
-                binding.imvBookmarkHotTrendDetail.setImageResource(R.drawable.ic_bookmark_active)
-            }
-        }
-
-
-
     }
 
     private fun initViews() {
-        hotTrend = intent.getSerializableExtra("key_detail_hotTrend") as HotTrend
+        viewModel = ViewModelProvider(this)[DetailHotTrendViewModel::class.java]
+
+        viewModel.getAddCartResponse().observe(this) {
+            if (it != null) {
+                finish()
+            }
+        }
+
+        binding.tvAddToCart.setOnClickListener {
+            viewModel.addToCart(this, hotTrend.id!!, SingletonClass.getUserId())
+        }
+
+        hotTrend = intent.getParcelableExtra<TourItem>("key_detail_hotTrend") as TourItem
         Glide.with(this)
-            .load(hotTrend.imageHotTrend)
+            .load(hotTrend.image?.get(0))
             .into(binding.imvHotTrendDetail)
-        binding.tvNameHotTrendDetail.text = hotTrend.nameHotTrend
-        binding.tvDescriptionHotTrendDetail.text = resources.getString(hotTrend.description)
-        binding.ratingBarHotTrendDetail.rating = hotTrend.rating
+        binding.tvNameHotTrendDetail.text = hotTrend.name
+        binding.tvDescriptionHotTrendDetail.text = hotTrend.description
+        binding.tvRealPrice.text = hotTrend.price.toString() + " VND"
+        binding.tvDiscountPrice.text = hotTrend.discount.toString() + " VND"
+        binding.tvReviewCount.text = "(" + hotTrend.reviewCount.toString() + " reviews)"
+        binding.tvReviewValue.text = hotTrend.reviewValue.toString()
 
-        if (hotTrend.isFavorite) {
-            binding.imvFavoriteHotTrendDetail.setImageResource(R.drawable.ic_favorite_active)
-        } else {
-            binding.imvFavoriteHotTrendDetail.setImageResource(R.drawable.ic_favorite_deactivate)
-        }
-
-        if (hotTrend.isBookMark) {
-            binding.imvBookmarkHotTrendDetail.setImageResource(R.drawable.ic_bookmark_active)
-        } else {
-            binding.imvBookmarkHotTrendDetail.setImageResource(R.drawable.ic_bookmark_deactivate)
-        }
     }
 
-    override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
-
-        // Add a marker and move the camera to a location
-        val location = LatLng(hotTrend.latitude.toDouble(), hotTrend.longitude.toDouble())
-        mMap.addMarker(location, "Marker in ${hotTrend.nameHotTrend}")
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 18f))
-    }
-
-    // Extension function to add a marker
-    private fun GoogleMap.addMarker(location: LatLng, title: String) {
-        addMarker(com.google.android.gms.maps.model.MarkerOptions().position(location).title(title))
-    }
-
-    private fun setFavorite() {
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            val collectionRef = db.collection("users").document(currentUser.uid).collection("favorite")
-            collectionRef.add(hotTrend)
-        }
-    }
-    private fun removeFavorite() {
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            val query = db.collection("users").document(currentUser.uid).collection("favorite").whereEqualTo("idHotTrend", hotTrend.idHotTrend)
-            query.get().addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    for (documentSnapshot in task.result!!) {
-                        val documentReference = documentSnapshot.reference
-                        documentReference.delete()
-                            .addOnSuccessListener {
-                                Log.d("Firestore", "Element deleted successfully!")
-                            }
-                            .addOnFailureListener { e ->
-                                Log.w("Firestore", "Error deleting element", e)
-                            }
-                    }
-                } else {
-                    Log.w("Firestore", "Error getting documents: ", task.exception)
-                }
-            }
-        }
-    }
-
-    private fun setBookmark() {
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            val collectionRef = db.collection("users").document(currentUser.uid).collection("bookmark")
-            collectionRef.add(hotTrend)
-        }
-    }
-    private fun removeBookmark() {
-        val currentUser = auth.currentUser
-        if (currentUser != null) {
-            val query = db.collection("users").document(currentUser.uid).collection("bookmark").whereEqualTo("idHotTrend", hotTrend.idHotTrend)
-            query.get().addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    for (documentSnapshot in task.result!!) {
-                        val documentReference = documentSnapshot.reference
-                        documentReference.delete()
-                            .addOnSuccessListener {
-                                Log.d("Firestore", "Element deleted successfully!")
-                            }
-                            .addOnFailureListener { e ->
-                                Log.w("Firestore", "Error deleting element", e)
-                            }
-                    }
-                } else {
-                    Log.w("Firestore", "Error getting documents: ", task.exception)
-                }
-            }
-        }
-    }
 }

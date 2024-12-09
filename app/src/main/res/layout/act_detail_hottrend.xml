@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -34,7 +40,7 @@
 
                 <ImageView
                     android:id="@+id/imvHotTrendDetail"
-                    android:layout_width="match_parent"
+                    android:layout_width="400dp"
                     android:layout_height="200dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/ic_hoguom" />
@@ -58,39 +64,68 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/imvBookmarkHotTrendDetail"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:src="@drawable/ic_bookmark_deactivate"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/imvFavoriteHotTrendDetail"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginEnd="15dp"
-                    android:src="@drawable/ic_favorite_deactivate"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/imvBookmarkHotTrendDetail"
-                    app:layout_constraintTop_toTopOf="parent" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <RatingBar
-                android:id="@+id/ratingBarHotTrendDetail"
-                style="@android:attr/ratingBarStyleSmall"
-                android:layout_width="wrap_content"
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 android:layout_marginTop="5dp"
-                android:isIndicator="true"
-                android:max="5"
-                android:scaleX=".5"
-                android:scaleY=".5"
-                android:transformPivotX="0dp"
-                android:transformPivotY="0dp" />
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvRealPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="1500000 vnd"
+                    android:textColor="@color/gray"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvDiscountPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="1200000 vnd"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    android:layout_marginStart="6dp"
+                    app:layout_constraintStart_toEndOf="@id/tvRealPrice"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <TextView
+                    android:id="@+id/tvReviewCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="(0 reviews)"
+                    android:textColor="@color/gray"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+
+                <TextView
+                    android:id="@+id/tvReviewValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="0.0"
+                    android:textColor="@color/white"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@id/tvReviewCount"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginEnd="4dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -109,16 +144,24 @@
                 android:text="@string/details"
                 android:textColor="@color/white"
                 android:textSize="14dp" />
-
-            <fragment
-                android:id="@+id/mapHotTrendDetail"
-                android:name="com.google.android.gms.maps.SupportMapFragment"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginTop="20dp" />
-
-
+                android:layout_height="100dp" />
         </LinearLayout>
 
     </ScrollView>
 </LinearLayout>
+    <TextView
+        android:id="@+id/tvAddToCart"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/custom_background_update_profile"
+        android:fontFamily="@font/montserrat_semi_bold"
+        android:gravity="center"
+        android:text="Add to cart"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_gravity="end|bottom"/>
+</FrameLayout>

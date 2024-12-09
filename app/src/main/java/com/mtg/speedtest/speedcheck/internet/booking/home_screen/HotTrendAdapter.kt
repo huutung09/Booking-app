@@ -7,11 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mtg.speedtest.speedcheck.internet.booking.databinding.ItemHotTrendHomeBinding
 import com.mtg.speedtest.speedcheck.internet.booking.model.HotTrend
+import com.mtg.speedtest.speedcheck.internet.booking.model.response.TourItem
 
 class HotTrendAdapter(
     private val context: Context,
-    private val listHotTrend: MutableList<HotTrend>,
-    val clickListener: (HotTrend, Int) -> Unit
+    private val listHotTrend: MutableList<TourItem>,
+    val clickListener: (TourItem, Int) -> Unit
 ) :
     RecyclerView.Adapter<HotTrendAdapter.ViewHolder>() {
 
@@ -27,12 +28,11 @@ class HotTrendAdapter(
         with(holder) {
             with(listHotTrend[position]) {
                 Glide.with(context)
-                    .load(this.imageHotTrend)
+                    .load(this.image?.get(0))
                     .into(binding.imvHotTrend)
-                binding.tvNameHotTrend.text = this.nameHotTrend
-                binding.tvAddressHotTrend.text = this.addressHotTrend
-                binding.tvDescriptionHotTrend.text = context.getString(this.description)
-                binding.ratingBarHotTrend.rating = this.rating
+                binding.tvNameHotTrend.text = this.name
+                binding.tvAddressHotTrend.text = this.price.toString() + " VND"
+                binding.tvDescriptionHotTrend.text = this.description
                 binding.constraintHotTrendDetail.setOnClickListener {
                     clickListener(listHotTrend[position], position)
                 }

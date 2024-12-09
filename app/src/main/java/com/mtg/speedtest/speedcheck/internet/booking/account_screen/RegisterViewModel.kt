@@ -12,39 +12,49 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.firestore
 import com.mtg.speedtest.speedcheck.internet.booking.SingletonClass
+import com.mtg.speedtest.speedcheck.internet.booking.api.ApiClient
 import com.mtg.speedtest.speedcheck.internet.booking.model.FbUser
+import com.mtg.speedtest.speedcheck.internet.booking.model.request.UserRegisterRequest
+import com.mtg.speedtest.speedcheck.internet.booking.model.response.BaseResponse
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class RegisterViewModel(application: Application) : AndroidViewModel(application) {
-    private val userMutableLiveData: MutableLiveData<FbUser> = MutableLiveData<FbUser>();
-    private val auth: FirebaseAuth = Firebase.auth
-    private val db = Firebase.firestore
-    fun createAccount(context: Context, user: FbUser) {
+    private val userMutableLiveData: MutableLiveData<BaseResponse> = MutableLiveData<BaseResponse>();
+    fun createAccount(context: Context, user: UserRegisterRequest) {
         viewModelScope.launch {
             try {
-                auth.createUserWithEmailAndPassword(user.emailUser, user.passwordUser!!).addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        val fbCurrentUser = auth.currentUser
-                        userMutableLiveData.postValue(FbUser(user.emailUser, user.firstUser, user.lastUser, user.passwordUser, fbCurrentUser?.uid))
-                        val userMap = hashMapOf(
-                            "emailUser" to user.emailUser,
-                            "firstUser" to user.firstUser,
-                            "lastUser" to user.lastUser,
-                            "passwordUser" to user.passwordUser,
-                            "tokenUser" to fbCurrentUser?.uid
-                        )
-                        db.collection("users").document(fbCurrentUser?.uid!!).set(userMap)
-                        Toast.makeText(context, "Register Success", Toast.LENGTH_SHORT).show()
-                    } else {
+                ApiClient.instance.registerUser(user).enqueue(object: Callback<BaseResponse> {
+                    override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
+                        Log.e("tung", response.toString())
+                        if (response.body()?.success.toBoolean()) {
+                            userMutableLiveData.postValue(response.body())
+                            Toast.makeText(
+                                context,
+                                "${response.body()?.message}.",
+                                Toast.LENGTH_SHORT,
+                            ).show()
+                        } else {
+                            Toast.makeText(
+                                context,
+                                "${response.body()?.message}.",
+                                Toast.LENGTH_SHORT,
+                            ).show()
+                        }
+                    }
+                    override fun onFailure(call: Call<BaseResponse>, t: Throwable) {
                         Log.w("Error", "createUserWithEmail:failure")
                         Toast.makeText(
                             context,
-                            "${it.exception?.message}.",
+                            "${t.message}.",
                             Toast.LENGTH_SHORT,
                         ).show()
                     }
-                }
+                })
+//
 
             }catch (e : Exception) {
                 Log.e("Logger", "${e.message}")
@@ -52,7 +62,7 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
         }
     }
 
-    fun getUser(): MutableLiveData<FbUser> {
+    fun getUser(): MutableLiveData<BaseResponse> {
         return userMutableLiveData
     }
 

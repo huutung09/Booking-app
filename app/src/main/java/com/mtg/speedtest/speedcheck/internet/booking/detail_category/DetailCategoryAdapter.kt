@@ -1,4 +1,4 @@
-package com.mtg.speedtest.speedcheck.internet.booking.favorite_screen
+package com.mtg.speedtest.speedcheck.internet.booking.detail_category
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,12 +8,12 @@ import com.bumptech.glide.Glide
 import com.mtg.speedtest.speedcheck.internet.booking.databinding.ItemHotTrendHomeBinding
 import com.mtg.speedtest.speedcheck.internet.booking.model.HotTrend
 
-class FavoriteAdapter(
+class DetailCategoryAdapter(
     private val context: Context,
-    private val listFavorite: MutableList<HotTrend>,
+    private val listTrend: MutableList<HotTrend>,
     val clickListener: (HotTrend, Int) -> Unit
 ) :
-    RecyclerView.Adapter<FavoriteAdapter.ViewHolder>() {
+    RecyclerView.Adapter<DetailCategoryAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: ItemHotTrendHomeBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -25,23 +25,22 @@ class FavoriteAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder) {
-            with(listFavorite[position]) {
+            with(listTrend[position]) {
                 Glide.with(context)
                     .load(this.imageHotTrend)
                     .into(binding.imvHotTrend)
                 binding.tvNameHotTrend.text = this.nameHotTrend
                 binding.tvAddressHotTrend.text = this.addressHotTrend
                 binding.tvDescriptionHotTrend.text = context.getString(this.description)
-                binding.ratingBarHotTrend.rating = this.rating
                 binding.constraintHotTrendDetail.setOnClickListener {
-                    clickListener(listFavorite[position], position)
+                    clickListener(listTrend[position], position)
                 }
             }
         }
     }
 
     override fun getItemCount(): Int {
-        return listFavorite.size
+        return listTrend.size
     }
 
 

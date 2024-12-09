@@ -1,4 +1,4 @@
-package com.mtg.speedtest.speedcheck.internet.booking.bookmark_screen
+package com.mtg.speedtest.speedcheck.internet.booking.cart_screen
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,14 +6,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mtg.speedtest.speedcheck.internet.booking.databinding.ItemHotTrendHomeBinding
-import com.mtg.speedtest.speedcheck.internet.booking.model.HotTrend
+import com.mtg.speedtest.speedcheck.internet.booking.model.response.CartData
+import com.mtg.speedtest.speedcheck.internet.booking.model.response.TourItem
 
-class BookmarkAdapter(
+class CartAdapter(
     private val context: Context,
-    private val listBookmark: MutableList<HotTrend>,
-    val clickListener: (HotTrend, Int) -> Unit
+    private val listCart: List<CartData>,
+    val clickListener: (CartData, Int) -> Unit
 ) :
-    RecyclerView.Adapter<BookmarkAdapter.ViewHolder>() {
+    RecyclerView.Adapter<CartAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: ItemHotTrendHomeBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -25,23 +26,22 @@ class BookmarkAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder) {
-            with(listBookmark[position]) {
+            with(listCart[position]) {
                 Glide.with(context)
-                    .load(this.imageHotTrend)
+                    .load(this.productId?.image?.get(0))
                     .into(binding.imvHotTrend)
-                binding.tvNameHotTrend.text = this.nameHotTrend
-                binding.tvAddressHotTrend.text = this.addressHotTrend
-                binding.tvDescriptionHotTrend.text = context.getString(this.description)
-                binding.ratingBarHotTrend.rating = this.rating
+                binding.tvNameHotTrend.text = this.productId?.name
+                binding.tvAddressHotTrend.text = this.productId?.price.toString() + " VND"
+                binding.tvDescriptionHotTrend.text = this.productId?.description
                 binding.constraintHotTrendDetail.setOnClickListener {
-                    clickListener(listBookmark[position], position)
+                    clickListener(listCart[position], position)
                 }
             }
         }
     }
 
     override fun getItemCount(): Int {
-        return listBookmark.size
+        return listCart.size
     }
 
 

@@ -6,11 +6,11 @@
         android:icon="@drawable/selector_home_main"/>
     <item
         android:id="@+id/bottomBarFavorite"
-        android:title="@string/favorite"
+        android:title="Search"
         android:icon="@drawable/selector_favorite_main"/>
     <item
         android:id="@+id/bottomBarBookmark"
-        android:title="@string/bookmark"
+        android:title="Cart"
         android:icon="@drawable/selector_bookmark_main"/>
 
     <item

@@ -29,17 +29,28 @@
         android:textSize="16sp" />
 
     <EditText
-        android:id="@+id/edtLastNameRegister"
+        android:id="@+id/editPhoneNumber"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/custom_background_name_profile"
         android:fontFamily="@font/montserrat_medium"
-        android:hint="@string/enter_your_last_name"
+        android:hint="Enter your phonenumber"
         android:paddingStart="20dp"
         android:textColor="@color/black"
         android:textSize="16sp" />
 
+    <EditText
+        android:id="@+id/edtAddress"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_background_name_profile"
+        android:fontFamily="@font/montserrat_medium"
+        android:hint="Enter your address"
+        android:paddingStart="20dp"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
     <EditText
         android:id="@+id/edtEmailRegister"
         android:layout_width="match_parent"

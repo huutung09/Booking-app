@@ -6,13 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.mtg.speedtest.speedcheck.internet.booking.SingletonClass
 import com.mtg.speedtest.speedcheck.internet.booking.databinding.FragmentHomeBinding
 import com.mtg.speedtest.speedcheck.internet.booking.detail_hottrend.DetailHotTrend
-import com.mtg.speedtest.speedcheck.internet.booking.detail_province.DetailProvinceAct
-import com.mtg.speedtest.speedcheck.internet.booking.model.HotTrend
+import com.mtg.speedtest.speedcheck.internet.booking.detail_category.DetailCategoryAct
+import com.mtg.speedtest.speedcheck.internet.booking.model.response.CategoryItem
+import com.mtg.speedtest.speedcheck.internet.booking.model.response.TourItem
 
 
 class HomeFragment : Fragment() {
@@ -23,6 +24,7 @@ class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
     private lateinit var provinceAdapter: ProvinceAdapter
     private lateinit var hotTrendAdapter: HotTrendAdapter
+    private lateinit var viewModel: HomeViewModel
 
 
     override fun onCreateView(
@@ -38,30 +40,43 @@ class HomeFragment : Fragment() {
     }
 
     private fun initViews() {
-        provinceAdapter = ProvinceAdapter(
-            requireContext(),
-            SingletonClass.getInstance().listProvince
-        ) { province, _ ->
-            val intent = Intent(requireContext(), DetailProvinceAct::class.java)
-            intent.putExtra("key_detail_province", province)
-            startActivity(intent)
-        }
-        val layoutManagerProvince: RecyclerView.LayoutManager =
-            LinearLayoutManager(this.activity, LinearLayoutManager.HORIZONTAL, false)
-        binding.revProvinceHome.layoutManager = layoutManagerProvince
-        binding.revProvinceHome.adapter = provinceAdapter
+        viewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+        viewModel.getCategoryList(requireContext())
+        viewModel.getTourList(requireContext())
 
-        hotTrendAdapter = HotTrendAdapter(requireContext(),
-            SingletonClass.getInstance().listHotTrend.filter { it.rating >= 4 }
-                .sortedBy { it.rating }.reversed() as MutableList<HotTrend>
-        ) { hotTrend, _ ->
-            val intent = Intent(requireContext(), DetailHotTrend::class.java)
-            intent.putExtra("key_detail_hotTrend", hotTrend)
-            startActivity(intent)
+
+        viewModel.getCategoryData().observe(viewLifecycleOwner) {
+            if (it != null) {
+                provinceAdapter = ProvinceAdapter(
+                    requireContext(),
+                    it.data as MutableList<CategoryItem>
+                ) { province, _ ->
+//                    val intent = Intent(requireContext(), DetailCategoryAct::class.java)
+//                    intent.putExtra("key_detail_province", province)
+//                    startActivity(intent)
+                }
+                val layoutManagerProvince: RecyclerView.LayoutManager =
+                    LinearLayoutManager(this.activity, LinearLayoutManager.HORIZONTAL, false)
+                binding.revProvinceHome.layoutManager = layoutManagerProvince
+                binding.revProvinceHome.adapter = provinceAdapter
+            }
         }
-        val layoutManagerHotTrend: RecyclerView.LayoutManager =
-            LinearLayoutManager(this.activity, LinearLayoutManager.VERTICAL, false)
-        binding.revHotTrend.layoutManager = layoutManagerHotTrend
-        binding.revHotTrend.adapter = hotTrendAdapter
+
+        viewModel.getTourData().observe(viewLifecycleOwner) {
+            if (it != null) {
+                hotTrendAdapter = HotTrendAdapter(requireContext(),
+                    it.data as MutableList<TourItem>
+                ) { hotTrend, _ ->
+                    val intent = Intent(requireContext(), DetailHotTrend::class.java)
+                    intent.putExtra("key_detail_hotTrend", hotTrend)
+                    startActivity(intent)
+                }
+                val layoutManagerHotTrend: RecyclerView.LayoutManager =
+                    LinearLayoutManager(this.activity, LinearLayoutManager.VERTICAL, false)
+                binding.revHotTrend.layoutManager = layoutManagerHotTrend
+                binding.revHotTrend.adapter = hotTrendAdapter
+            }
+        }
+
     }
 }

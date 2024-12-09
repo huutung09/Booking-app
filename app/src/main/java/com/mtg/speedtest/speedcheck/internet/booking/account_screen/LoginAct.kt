@@ -39,6 +39,7 @@ class LoginAct : AppCompatActivity() {
 //        }
         viewModel.getUserTokenMutableLiveData().observe(this) {
             if (it != null) {
+                SingletonClass.setUserId(it)
                 startActivity(Intent(this, MainAct::class.java))
             }
         }
@@ -47,8 +48,6 @@ class LoginAct : AppCompatActivity() {
     private fun initViews() {
         userList = mutableListOf()
         viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
-        viewModel.getListHotTrend()
-        viewModel.getListProvince()
     }
 
     private fun openMainAct() {

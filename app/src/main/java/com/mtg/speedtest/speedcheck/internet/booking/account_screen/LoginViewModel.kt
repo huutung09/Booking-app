@@ -13,47 +13,48 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.firestore
 import com.mtg.speedtest.speedcheck.internet.booking.SingletonClass
+import com.mtg.speedtest.speedcheck.internet.booking.api.ApiClient
 import com.mtg.speedtest.speedcheck.internet.booking.database.EndlessDatabase
 import com.mtg.speedtest.speedcheck.internet.booking.model.FbUser
 import com.mtg.speedtest.speedcheck.internet.booking.model.HotTrend
 import com.mtg.speedtest.speedcheck.internet.booking.model.Province
 import com.mtg.speedtest.speedcheck.internet.booking.model.User
+import com.mtg.speedtest.speedcheck.internet.booking.model.request.UserLoginRequest
+import com.mtg.speedtest.speedcheck.internet.booking.model.response.BaseResponse
+import com.mtg.speedtest.speedcheck.internet.booking.model.response.UserLoginResponse
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class LoginViewModel(application: Application) : AndroidViewModel(application) {
-    private val _listUsers = MutableLiveData<MutableList<User>>()
-    val listUsers: LiveData<MutableList<User>> = _listUsers
     private val userTokenMutableLiveData: MutableLiveData<String> = MutableLiveData<String>();
-    private val auth: FirebaseAuth = Firebase.auth
-    private val db = Firebase.firestore
-
-     fun getListUser(context: Context) {
-        viewModelScope.launch {
-            try {
-                val list = EndlessDatabase.getInstance(context)?.userDao()?.getListUsers()!!
-                _listUsers.postValue(list)
-            } catch (e: Exception) {
-                Log.e("Logger", "${e.message}")
-            }
-        }
-    }
 
     fun login(context: Context, email: String, password: String) {
         viewModelScope.launch {
             try {
-                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        val user = auth.currentUser
-                        userTokenMutableLiveData.postValue(user?.uid)
-                    } else {
-                        Log.e("Logger", "${it.exception?.message}")
+                ApiClient.instance.loginUser(UserLoginRequest(email, password)).enqueue(object: Callback<UserLoginResponse> {
+                    override fun onResponse(call: Call<UserLoginResponse>, response: Response<UserLoginResponse>) {
+                        if (response.body()?.success.toBoolean()) {
+                            val userData = response.body()?.userData
+                            userTokenMutableLiveData.postValue(userData?.id.toString())
+                        } else {
+                            Toast.makeText(
+                                context,
+                                "${response.body()?.message}.",
+                                Toast.LENGTH_SHORT,
+                            ).show()
+                        }
+                    }
+                    override fun onFailure(call: Call<UserLoginResponse>, t: Throwable) {
+                        Log.w("Error", "createUserWithEmail:failure")
                         Toast.makeText(
                             context,
-                            "Authentication failed.",
+                            "${t.message}.",
                             Toast.LENGTH_SHORT,
                         ).show()
                     }
-                }
+                })
             } catch (e: Exception) {
                 Log.e("Logger", "${e.message}")
             }
@@ -62,31 +63,5 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getUserTokenMutableLiveData(): MutableLiveData<String> {
         return userTokenMutableLiveData
-    }
-
-    fun getListHotTrend() {
-        db.collection("hot_trends")
-            .get()
-            .addOnSuccessListener {
-                SingletonClass.getInstance().listHotTrend.clear()
-                for (document in it) {
-                    val hotTrend = document.toObject(HotTrend::class.java)
-                    SingletonClass.getInstance().listHotTrend.add(hotTrend)
-                }
-            }
-
-    }
-
-    fun getListProvince() {
-        db.collection("provinces")
-            .get()
-            .addOnSuccessListener {
-                SingletonClass.getInstance().listProvince.clear()
-                for (document in it) {
-                    val province = document.toObject(Province::class.java)
-                    SingletonClass.getInstance().listProvince.add(province)
-                }
-            }
-
     }
 }

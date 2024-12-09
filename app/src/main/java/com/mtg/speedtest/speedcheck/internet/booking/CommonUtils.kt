@@ -9,6 +9,6 @@ object CommonUtils {
     const val keyBackMainScreenByLanguageScreen: String = "keyBackMainScreenByLanguageScreen"
     const val keyIndexAccount: String = "keyIndexAccount"
     const val nameDatabase: String = "RoomDatabase"
-
-
+    const val BASE_URL = "http://192.168.1.135:3000/api/"
+    const val REQUEST_TIMEOUT_DURATION = 60
 }

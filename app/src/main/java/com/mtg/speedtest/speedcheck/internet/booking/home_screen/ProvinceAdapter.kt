@@ -7,11 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mtg.speedtest.speedcheck.internet.booking.databinding.ItemProvinceHomeBinding
 import com.mtg.speedtest.speedcheck.internet.booking.model.Province
+import com.mtg.speedtest.speedcheck.internet.booking.model.response.CategoryItem
 
 class ProvinceAdapter(
     private val context: Context,
-    private val listProvince: MutableList<Province>,
-    val clickListener: (Province, Int) -> Unit
+    private val listProvince: MutableList<CategoryItem>,
+    val clickListener: (CategoryItem, Int) -> Unit
 ) :
     RecyclerView.Adapter<ProvinceAdapter.ViewHolder>() {
 
@@ -27,10 +28,10 @@ class ProvinceAdapter(
         with(holder) {
             with(listProvince[position]) {
                 Glide.with(context)
-                    .load(this.imageProvince)
+                    .load(this.image)
                     .into(binding.imvProvince)
-                binding.tvAddressProvince.text = this.addressProvince
-                binding.tvDescriptionProvince.text = context.getString(this.descriptionProvince)
+                binding.tvAddressProvince.text = this.name
+                binding.tvDescriptionProvince.text = this.name
                 binding.constraintItemProvince.setOnClickListener {
                     clickListener(listProvince[position], position)
                 }

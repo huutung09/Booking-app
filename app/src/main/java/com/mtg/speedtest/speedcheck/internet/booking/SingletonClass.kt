@@ -10,12 +10,11 @@ import com.mtg.speedtest.speedcheck.internet.booking.model.Province
 
 class SingletonClass private constructor() {
     val listHotTrend: MutableList<HotTrend> = mutableListOf()
-    val listProvince: MutableList<Province> = mutableListOf()
+    var userId = ""
 
 
 
     companion object {
-        // The single instance of the class
         @Volatile
         private var instance: SingletonClass? = null
 
@@ -24,6 +23,14 @@ class SingletonClass private constructor() {
             return instance ?: synchronized(this) {
                 instance ?: SingletonClass().also { instance = it }
             }
+        }
+
+        fun setUserId(userId: String) {
+            getInstance().userId = userId
+        }
+
+        fun getUserId(): String {
+            return getInstance().userId
         }
 
 //        fun uploadHotTrend() {

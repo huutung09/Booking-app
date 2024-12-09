@@ -1,4 +1,4 @@
-package com.mtg.speedtest.speedcheck.internet.booking.detail_province
+package com.mtg.speedtest.speedcheck.internet.booking.search_screen
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,13 +7,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mtg.speedtest.speedcheck.internet.booking.databinding.ItemHotTrendHomeBinding
 import com.mtg.speedtest.speedcheck.internet.booking.model.HotTrend
+import com.mtg.speedtest.speedcheck.internet.booking.model.response.TourData
+import com.mtg.speedtest.speedcheck.internet.booking.model.response.TourItem
 
-class DetailProvinceAdapter(
+class SearchAdapter(
     private val context: Context,
-    private val listTrend: MutableList<HotTrend>,
-    val clickListener: (HotTrend, Int) -> Unit
+    private val listFavorite: MutableList<TourItem>,
+    val clickListener: (TourItem, Int) -> Unit
 ) :
-    RecyclerView.Adapter<DetailProvinceAdapter.ViewHolder>() {
+    RecyclerView.Adapter<SearchAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: ItemHotTrendHomeBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -25,23 +27,22 @@ class DetailProvinceAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder) {
-            with(listTrend[position]) {
+            with(listFavorite[position]) {
                 Glide.with(context)
-                    .load(this.imageHotTrend)
+                    .load(this.image?.get(0))
                     .into(binding.imvHotTrend)
-                binding.tvNameHotTrend.text = this.nameHotTrend
-                binding.tvAddressHotTrend.text = this.addressHotTrend
-                binding.tvDescriptionHotTrend.text = context.getString(this.description)
-                binding.ratingBarHotTrend.rating = this.rating
+                binding.tvNameHotTrend.text = this.name
+                binding.tvAddressHotTrend.text = this.price.toString()
+                binding.tvDescriptionHotTrend.text = this.description
                 binding.constraintHotTrendDetail.setOnClickListener {
-                    clickListener(listTrend[position], position)
+                    clickListener(listFavorite[position], position)
                 }
             }
         }
     }
 
     override fun getItemCount(): Int {
-        return listTrend.size
+        return listFavorite.size
     }
 
 
