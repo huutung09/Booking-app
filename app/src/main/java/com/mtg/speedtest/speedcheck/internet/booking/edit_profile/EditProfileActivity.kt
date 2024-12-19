@@ -1,8 +1,11 @@
 package com.mtg.speedtest.speedcheck.internet.booking.edit_profile
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.mtg.speedtest.speedcheck.internet.booking.R
+import com.mtg.speedtest.speedcheck.internet.booking.SingletonClass
 import com.mtg.speedtest.speedcheck.internet.booking.databinding.ActivityEditProfileBinding
 
 
@@ -19,42 +22,45 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     private fun initEvents() {
+        binding.imvBack.setOnClickListener {
+            finish()
+        }
 
-//        binding.tvUpdateProfile.setOnClickListener {
-//            user.firstUser = binding.edtFirstNameProfile.text.toString().trim()
-//            user.lastUser = binding.edtLastNameProfile.text.toString().trim()
-//            user.passwordUser = binding.edtPasswordProfile.text.toString().trim()
-//
-//            viewModel.updateUser(requireContext(), user)
-//        }
-//
-//        viewModel.user.observe(viewLifecycleOwner) {
-//            user = it
-//            binding.tvNameProfile.text = it.firstUser + " " + it.lastUser
-//            binding.tvEmailProfile.text = it.emailUser
-//            binding.edtFirstNameProfile.setText(it.firstUser)
-//            binding.edtLastNameProfile.setText(it.lastUser)
-//            binding.edtPasswordProfile.setText(it.passwordUser)
-//        }
-//
-//        viewModel.statusUpdate.observe(viewLifecycleOwner) {
-//            if (it) {
-//                Toast.makeText(
-//                    requireContext(),
-//                    getString(R.string.update_success),
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//            } else {
-//                Toast.makeText(
-//                    requireContext(),
-//                    getString(R.string.update_failed),
-//                    Toast.LENGTH_SHORT
-//                ).show()
-//            }
-//        }
+        binding.tvUpdateProfile.setOnClickListener {
+            val email = binding.edtEmailProfile.text.toString().trim()
+            val name = binding.edtNameProfile.text.toString().trim()
+            val phone = binding.edtPhoneProfile.text.toString().trim()
+            val address = binding.edtAddressProfile.text.toString().trim()
+
+            viewModel.updateProfile(SingletonClass.getUserId(), name, email, phone, address)
+        }
+
+        viewModel.getProfileData().observe(this) {
+            binding.edtNameProfile.setText(it.name)
+            binding.edtEmailProfile.setText(it.email)
+            binding.edtPhoneProfile.setText(it.phone)
+            binding.edtAddressProfile.setText(it.address)
+        }
+
+        viewModel.getStatusUpdate().observe(this) {
+            if (it) {
+                Toast.makeText(
+                    this,
+                    getString(R.string.update_success),
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                Toast.makeText(
+                   this,
+                    getString(R.string.update_failed),
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
     }
 
     private fun initViews() {
         viewModel = ViewModelProvider(this)[EditProfileViewModel::class.java]
+        viewModel.getProfile(this, SingletonClass.getUserId())
     }
 }

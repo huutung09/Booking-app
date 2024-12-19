@@ -5,9 +5,44 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".edit_profile.EditProfileActivity"
     android:background="@color/black"
     android:paddingHorizontal="24dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/appBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+       >
+
+        <ImageView
+            android:id="@+id/imvBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:padding="8dp"/>
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Edit Profile"
+            android:fontFamily="@font/montserrat_bold"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewImageProfile"
         android:layout_width="wrap_content"
@@ -17,7 +52,7 @@
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/appBar">
 
         <ImageView
             android:id="@+id/imvAvatarProfile"
@@ -28,84 +63,58 @@
 
     </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:id="@+id/tvNameProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:fontFamily="@font/montserrat_semi_bold"
-        android:text="Full name"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+
+    <EditText
+        android:id="@+id/edtEmailProfile"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/custom_background_name_profile"
+        android:fontFamily="@font/montserrat_medium"
+        android:hint="Email..."
+        android:paddingStart="20dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@id/cardViewImageProfile" />
 
-    <TextView
-        android:id="@+id/tvDefaultOne"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
-        android:fontFamily="@font/montserrat_medium"
-        android:text="@string/edit_profile"
-        android:textColor="#7f949f"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvNameProfile" />
-
-    <TextView
-        android:id="@+id/tvEmailProfile"
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:layout_marginTop="32dp"
-        android:background="@drawable/custom_background_email_profile"
-        android:fontFamily="@font/montserrat_medium"
-        android:gravity="center_vertical"
-        android:paddingStart="20dp"
-        android:text="manchesterunited@gmail.com"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/tvDefaultOne" />
-
     <EditText
-        android:id="@+id/edtFirstNameProfile"
+        android:id="@+id/edtNameProfile"
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/custom_background_name_profile"
         android:fontFamily="@font/montserrat_medium"
-        android:hint="@string/first_name"
+        android:hint="User name..."
         android:paddingStart="20dp"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/tvEmailProfile" />
+        app:layout_constraintTop_toBottomOf="@id/edtEmailProfile" />
 
     <EditText
-        android:id="@+id/edtLastNameProfile"
+        android:id="@+id/edtPhoneProfile"
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/custom_background_name_profile"
         android:fontFamily="@font/montserrat_medium"
-        android:hint="@string/last_name"
+        android:hint="Phone number..."
         android:paddingStart="20dp"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/edtFirstNameProfile" />
+        app:layout_constraintTop_toBottomOf="@id/edtNameProfile" />
 
     <EditText
-        android:id="@+id/edtPasswordProfile"
+        android:id="@+id/edtAddressProfile"
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/custom_background_name_profile"
         android:fontFamily="@font/montserrat_medium"
-        android:hint="@string/password"
+        android:hint="Address..."
         android:paddingStart="20dp"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:layout_constraintTop_toBottomOf="@id/edtLastNameProfile" />
+        app:layout_constraintTop_toBottomOf="@id/edtPhoneProfile" />
 
     <TextView
         android:id="@+id/tvUpdateProfile"

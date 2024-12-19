@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mtg.speedtest.speedcheck.internet.booking.databinding.ItemProvinceHomeBinding
-import com.mtg.speedtest.speedcheck.internet.booking.model.Province
 import com.mtg.speedtest.speedcheck.internet.booking.model.response.CategoryItem
 
 class ProvinceAdapter(

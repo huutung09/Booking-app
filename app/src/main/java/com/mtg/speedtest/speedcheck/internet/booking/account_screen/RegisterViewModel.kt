@@ -7,13 +7,7 @@ import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.Firebase
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
-import com.google.firebase.firestore.firestore
-import com.mtg.speedtest.speedcheck.internet.booking.SingletonClass
 import com.mtg.speedtest.speedcheck.internet.booking.api.ApiClient
-import com.mtg.speedtest.speedcheck.internet.booking.model.FbUser
 import com.mtg.speedtest.speedcheck.internet.booking.model.request.UserRegisterRequest
 import com.mtg.speedtest.speedcheck.internet.booking.model.response.BaseResponse
 import kotlinx.coroutines.launch
@@ -29,7 +23,6 @@ class RegisterViewModel(application: Application) : AndroidViewModel(application
             try {
                 ApiClient.instance.registerUser(user).enqueue(object: Callback<BaseResponse> {
                     override fun onResponse(call: Call<BaseResponse>, response: Response<BaseResponse>) {
-                        Log.e("tung", response.toString())
                         if (response.body()?.success.toBoolean()) {
                             userMutableLiveData.postValue(response.body())
                             Toast.makeText(

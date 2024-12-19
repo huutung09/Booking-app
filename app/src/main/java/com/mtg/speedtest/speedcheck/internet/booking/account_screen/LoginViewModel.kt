@@ -8,19 +8,9 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.Firebase
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.auth
-import com.google.firebase.firestore.firestore
 import com.mtg.speedtest.speedcheck.internet.booking.SingletonClass
 import com.mtg.speedtest.speedcheck.internet.booking.api.ApiClient
-import com.mtg.speedtest.speedcheck.internet.booking.database.EndlessDatabase
-import com.mtg.speedtest.speedcheck.internet.booking.model.FbUser
-import com.mtg.speedtest.speedcheck.internet.booking.model.HotTrend
-import com.mtg.speedtest.speedcheck.internet.booking.model.Province
-import com.mtg.speedtest.speedcheck.internet.booking.model.User
 import com.mtg.speedtest.speedcheck.internet.booking.model.request.UserLoginRequest
-import com.mtg.speedtest.speedcheck.internet.booking.model.response.BaseResponse
 import com.mtg.speedtest.speedcheck.internet.booking.model.response.UserLoginResponse
 import kotlinx.coroutines.launch
 import retrofit2.Call
@@ -38,6 +28,8 @@ class LoginViewModel(application: Application) : AndroidViewModel(application) {
                         if (response.body()?.success.toBoolean()) {
                             val userData = response.body()?.userData
                             userTokenMutableLiveData.postValue(userData?.id.toString())
+                            SingletonClass.setUserName(userData?.name.toString())
+                            SingletonClass.setAddress(userData?.address.toString())
                         } else {
                             Toast.makeText(
                                 context,

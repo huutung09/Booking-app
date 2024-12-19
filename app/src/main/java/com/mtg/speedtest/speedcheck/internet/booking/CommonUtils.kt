@@ -1,5 +1,9 @@
 package com.mtg.speedtest.speedcheck.internet.booking
 
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
+
 object CommonUtils {
     const val nameEmail: String = "verifiedapp.help@gmail.com"
     const val titleEmail: String = "User feedback Speed Test"
@@ -11,4 +15,18 @@ object CommonUtils {
     const val nameDatabase: String = "RoomDatabase"
     const val BASE_URL = "http://192.168.1.135:3000/api/"
     const val REQUEST_TIMEOUT_DURATION = 60
+
+
+    fun formatVndMoney(money: String) : String {
+        return String.format("%,d VND", money.toInt())
+    }
+
+    fun formatDate(dateString: String?) : String {
+        if (dateString == null) return ""
+        val localDateTime = Instant.parse(dateString)
+            .atZone(ZoneId.systemDefault())
+            .toLocalDateTime()
+        val formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss")
+        return localDateTime.format(formatter)
+    }
 }

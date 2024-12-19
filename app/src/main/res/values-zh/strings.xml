@@ -69,5 +69,19 @@
     <string name="this_application_is_written_by_tong_thien_quan_2023">2023 VietNamEndlessBeauty 應用程式包含來自 Google 的資料，包括圖片和資訊。 所有此類材料均不用於金錢目的</string>
     <string name="description_phongnha_kebang">Phong Nha Ke Bang 國家公園位於廣平省。 這裡是2003年根據地質標準被聯合國教科文組織認定為世界自然遺產的地方。此外，2005年，這裡在生態方面也被聯合國教科文組織認定為世界自然遺產。 Phong Nha Ke Bang 被譽為洞穴王國，擁有 3000 多個大大小小的洞穴。 Phong Nha 洞穴是 Phong Nha-Ke Bang 三大洞穴系統之一。 來到Phong Nha Ke Bang，你會欣賞到最美麗的地下河、最高的洞穴、沙丘、珊瑚礁…可以說，Phong Nha Ke Bang是最具吸引力和魅力的旅遊目的地。</string>
     <string name="description_dinhdoclap">胡志明市以其現代化的天際線和色彩繽紛的燈光讓遊客著迷。 儘管這座城市最近煥然一新，擁有許多宏偉的建築和時尚的生活方式，但西貢仍然保留著明顯而獨特的歷史。 當涉及獨立宮或（統一宮）時，它的名字確實說出了你想知道的內容。 作為西貢最精美的殖民建築之一，它不僅被認為是越南民族獨立的象徵，而且因其建築和歷史價值而被視為特殊的國家文物。 它由法國人於 1868 年至 1871 年期間建造，最初是總督的住所和指揮中心。 1954年，這座宮殿被西貢政府（以吳廷琰總統為代表）接管，並更名為獨立宮。 1962年被炸彈炸毀後，被新建築取代。</string>
+    <string-array name="sort_options">
+        <item>Price: Low to High</item>
+        <item>Price: High to Low</item>
+        <item>Popularity</item>
+        <item>Rating</item>
+    </string-array>
+
+    <string-array name="category_options">
+        <item>All Categories</item>
+        <item>Adventure</item>
+        <item>Beach</item>
+        <item>City Tours</item>
+        <item>Cultural</item>
+    </string-array>
 
 </resources>

@@ -5,9 +5,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.mtg.speedtest.speedcheck.internet.booking.databinding.ItemHotTrendHomeBinding
+import com.mtg.speedtest.speedcheck.internet.booking.CommonUtils
+import com.mtg.speedtest.speedcheck.internet.booking.databinding.ItemCartBinding
 import com.mtg.speedtest.speedcheck.internet.booking.model.response.CartData
-import com.mtg.speedtest.speedcheck.internet.booking.model.response.TourItem
 
 class CartAdapter(
     private val context: Context,
@@ -16,11 +16,11 @@ class CartAdapter(
 ) :
     RecyclerView.Adapter<CartAdapter.ViewHolder>() {
 
-    class ViewHolder(val binding: ItemHotTrendHomeBinding) : RecyclerView.ViewHolder(binding.root)
+    class ViewHolder(val binding: ItemCartBinding) : RecyclerView.ViewHolder(binding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
-            ItemHotTrendHomeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ItemCartBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
     }
 
@@ -29,13 +29,13 @@ class CartAdapter(
             with(listCart[position]) {
                 Glide.with(context)
                     .load(this.productId?.image?.get(0))
-                    .into(binding.imvHotTrend)
-                binding.tvNameHotTrend.text = this.productId?.name
-                binding.tvAddressHotTrend.text = this.productId?.price.toString() + " VND"
-                binding.tvDescriptionHotTrend.text = this.productId?.description
-                binding.constraintHotTrendDetail.setOnClickListener {
-                    clickListener(listCart[position], position)
-                }
+                    .into(binding.productImage)
+                binding.productName.text = this.productId?.name
+                binding.productPrice.text = CommonUtils.formatVndMoney(this.productId?.price.toString())
+                binding.productDescription.text = this.productId?.description
+//                binding.constraintHotTrendDetail.setOnClickListener {
+//                    clickListener(listCart[position], position)
+//                }
             }
         }
     }

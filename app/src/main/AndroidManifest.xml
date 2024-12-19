@@ -16,6 +16,24 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".tour_review.TourReviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddReview.AddReviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".order_detail.OrderDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".payment_screen.PaymentActivity"
+            android:exported="false" />
+        <activity
+            android:name=".order_list.OrderListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".orderConfim.VoucherActivity"
+            android:exported="false" />
+        <activity
             android:name=".edit_profile.EditProfileActivity"
             android:exported="false" />
 
@@ -41,19 +59,22 @@
         </activity>
         <activity
             android:name=".account_screen.LoginAct"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".account_screen.RegisterAct"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".menu.MenuAct"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".detail_category.DetailCategoryAct"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".detail_hottrend.DetailHotTrend"
-            android:exported="true"></activity>
+            android:exported="true" />
+        <activity
+            android:name=".orderConfim.OrderConfirmActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

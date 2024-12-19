@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.mtg.speedtest.speedcheck.internet.booking.CommonUtils
 import com.mtg.speedtest.speedcheck.internet.booking.databinding.ItemHotTrendHomeBinding
-import com.mtg.speedtest.speedcheck.internet.booking.model.HotTrend
 import com.mtg.speedtest.speedcheck.internet.booking.model.response.TourItem
 
 class HotTrendAdapter(
@@ -31,7 +31,7 @@ class HotTrendAdapter(
                     .load(this.image?.get(0))
                     .into(binding.imvHotTrend)
                 binding.tvNameHotTrend.text = this.name
-                binding.tvAddressHotTrend.text = this.price.toString() + " VND"
+                binding.productPrice.text =  CommonUtils.formatVndMoney(this.price.toString())
                 binding.tvDescriptionHotTrend.text = this.description
                 binding.constraintHotTrendDetail.setOnClickListener {
                     clickListener(listHotTrend[position], position)

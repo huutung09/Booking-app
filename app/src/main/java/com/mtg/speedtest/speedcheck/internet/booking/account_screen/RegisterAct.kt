@@ -1,17 +1,11 @@
 package com.mtg.speedtest.speedcheck.internet.booking.account_screen
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.mtg.speedtest.speedcheck.internet.booking.R
-import com.mtg.speedtest.speedcheck.internet.booking.database.EndlessDatabase
-import com.mtg.speedtest.speedcheck.internet.booking.databinding.ActLoginBinding
 import com.mtg.speedtest.speedcheck.internet.booking.databinding.ActRegisterBinding
-import com.mtg.speedtest.speedcheck.internet.booking.model.FbUser
-import com.mtg.speedtest.speedcheck.internet.booking.model.User
-import com.mtg.speedtest.speedcheck.internet.booking.model.request.UserLoginRequest
 import com.mtg.speedtest.speedcheck.internet.booking.model.request.UserRegisterRequest
 
 class RegisterAct : AppCompatActivity() {

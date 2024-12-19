@@ -51,9 +51,9 @@ class HomeFragment : Fragment() {
                     requireContext(),
                     it.data as MutableList<CategoryItem>
                 ) { province, _ ->
-//                    val intent = Intent(requireContext(), DetailCategoryAct::class.java)
-//                    intent.putExtra("key_detail_province", province)
-//                    startActivity(intent)
+                    val intent = Intent(requireContext(), DetailCategoryAct::class.java)
+                    intent.putExtra("key_detail_category", province)
+                    startActivity(intent)
                 }
                 val layoutManagerProvince: RecyclerView.LayoutManager =
                     LinearLayoutManager(this.activity, LinearLayoutManager.HORIZONTAL, false)

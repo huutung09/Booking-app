@@ -9,13 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.Firebase
-import com.google.firebase.auth.auth
-import com.google.firebase.firestore.firestore
+import com.mtg.speedtest.speedcheck.internet.booking.CommonUtils
 import com.mtg.speedtest.speedcheck.internet.booking.SingletonClass
 import com.mtg.speedtest.speedcheck.internet.booking.databinding.FragmentCartBinding
-import com.mtg.speedtest.speedcheck.internet.booking.detail_hottrend.DetailHotTrend
-import com.mtg.speedtest.speedcheck.internet.booking.model.HotTrend
+import com.mtg.speedtest.speedcheck.internet.booking.model.response.CartData
+import com.mtg.speedtest.speedcheck.internet.booking.orderConfim.OrderConfirmActivity
 
 class CartFragment : Fragment() {
     companion object {
@@ -24,9 +22,6 @@ class CartFragment : Fragment() {
 
     private lateinit var binding: FragmentCartBinding
     private lateinit var cartAdapter: CartAdapter
-    private val db = Firebase.firestore
-    private val auth = Firebase.auth
-    private val listBookmark = mutableListOf<HotTrend>()
     private lateinit var viewModel: CartViewModel
 
     override fun onCreateView(
@@ -52,17 +47,22 @@ class CartFragment : Fragment() {
 
         viewModel.getCartData().observe(viewLifecycleOwner) {
             cartAdapter = CartAdapter(requireContext(), it) { hotTrend, _ ->
-                val intent = Intent(requireContext(), DetailHotTrend::class.java)
-                intent.putExtra("key_detail_hotTrend", hotTrend.productId)
-                startActivity(intent)
+//                val intent = Intent(requireContext(), DetailHotTrend::class.java)
+//                intent.putExtra("key_detail_hotTrend", hotTrend.productId)
+//                startActivity(intent)
             }
             val layoutManagerProvince: RecyclerView.LayoutManager =
                 LinearLayoutManager(this.activity, LinearLayoutManager.VERTICAL, false)
-            binding.revBookmark.layoutManager = layoutManagerProvince
-            binding.revBookmark.adapter = cartAdapter
+            binding.revCart.layoutManager = layoutManagerProvince
+            binding.revCart.adapter = cartAdapter
+            binding.tvTotalPrice.text =  "Total price: " + CommonUtils.formatVndMoney(viewModel.getTotalPrice(it).toString())
         }
 
-
+        binding.tvAddToCart.setOnClickListener {
+            val intent = Intent(requireContext(), OrderConfirmActivity::class.java)
+            intent.putParcelableArrayListExtra("key_order_confirm", viewModel.getCartData().value as ArrayList<CartData>)
+            startActivity(intent)
+        }
     }
 
 

@@ -70,5 +70,19 @@
     <string name="description_phongnha_kebang">Phong Nha Ke Bang National Park is located in Quang Binh province. This is a place recognized by Unesco as a world natural heritage based on geological criteria in 2003. Moreover, in 2005, this place was recognized by Unesco as a world natural heritage in terms of ecology. Phong Nha Ke Bang is known as the cave kingdom with more than 3,000 large and small caves. Phong Nha cave is one of the three largest cave systems of Phong Nha- Ke Bang. Coming to Phong Nha Ke Bang, you will admire the most beautiful underground rivers, highest caves, sand dunes, and coral reefs, … It can be said that Phong Nha Ke Bang is the most attractive and charming tourist destination.</string>
     <string name="description_dinhdoclap">Ho Chi Minh City mesmerizes tourists by its modern skyline and colorful lights. Although the city has been recently renewed with a lot of magnificent buildings and trendy lifestyle, Saigon has still retained a visible and distinctive history. When it comes to Independence Palace or (Reunification Palace), its name does say what you want to know. As one of the finest colonial buildings in Saigon, it is considered not only the symbol of Vietnam national independence, but also a special national relic for its architectural and historical values. Built by the French during the period of 1868 and 1871, it originally served as the home and command center of Governor General. The palace was then taken over by Saigon government in 1954 (represented by President Ngo Dinh Diem) as well as renamed the Independence Palace. After being demolished by bombs in 1962, it was replaced by a new building.</string>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyBZzlfwECTiVHrxyqL_olYyFrnnTyr4gXM</string>
+    <string-array name="sort_options">
+        <item>Price: Low to High</item>
+        <item>Price: High to Low</item>
+        <item>Popularity</item>
+        <item>Rating</item>
+    </string-array>
+
+    <string-array name="category_options">
+        <item>All Categories</item>
+        <item>Adventure</item>
+        <item>Beach</item>
+        <item>City Tours</item>
+        <item>Cultural</item>
+    </string-array>
 
 </resources>
