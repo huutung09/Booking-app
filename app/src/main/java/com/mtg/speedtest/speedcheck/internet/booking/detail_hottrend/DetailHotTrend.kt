@@ -68,8 +68,7 @@ class DetailHotTrend : AppCompatActivity() {
             .into(binding.imvHotTrendDetail)
         binding.tvNameHotTrendDetail.text = hotTrend.name
         binding.tvDescriptionHotTrendDetail.text = hotTrend.description
-        binding.tvRealPrice.text = CommonUtils.formatVndMoney( hotTrend.price.toString())
-        binding.tvDiscountPrice.text = CommonUtils.formatVndMoney(hotTrend.discount.toString())
+        binding.tvRealPrice.text = CommonUtils.formatVndMoney(hotTrend.price.toString())
         binding.tvReviewCount.text = "(" + hotTrend.reviewCount.toString() + " reviews)"
         binding.tvReviewValue.text = hotTrend.reviewValue.toString()
 

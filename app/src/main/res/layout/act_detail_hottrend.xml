@@ -78,26 +78,13 @@
                     android:id="@+id/tvRealPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:text="1500000 vnd"
-                    android:textColor="@color/gray"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tvDiscountPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="1200000 vnd"
                     android:textColor="@color/white"
                     android:textSize="14sp"
-                    android:layout_marginStart="6dp"
-                    app:layout_constraintStart_toEndOf="@id/tvRealPrice"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tvReviewCount"
