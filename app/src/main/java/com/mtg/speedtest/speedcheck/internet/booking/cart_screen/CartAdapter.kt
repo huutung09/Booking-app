@@ -33,7 +33,7 @@ class CartAdapter(
                 binding.productName.text = this.productId?.name
                 binding.productPrice.text = CommonUtils.formatVndMoney(this.productId?.price.toString())
                 binding.productDescription.text = this.productId?.description
-//                binding.constraintHotTrendDetail.setOnClickListener {
+//                binding.btnDelete.setOnClickListener {
 //                    clickListener(listCart[position], position)
 //                }
             }
