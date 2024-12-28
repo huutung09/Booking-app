@@ -57,8 +57,8 @@ class CartViewModel(application: Application) : AndroidViewModel(application) {
         return cartData
     }
 
-    fun getTotalPrice(list: List<CartData>): Int {
-        var totalPrice = 0
+    fun getTotalPrice(list: List<CartData>): Long {
+        var totalPrice = 0L
         for (item in list) {
             if (item.productId?.price != null) {
                 totalPrice += item.productId!!.price!!

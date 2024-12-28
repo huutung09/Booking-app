@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.mtg.speedtest.speedcheck.internet.booking.AddReview.AddReviewActivity
 import com.mtg.speedtest.speedcheck.internet.booking.CommonUtils
+import com.mtg.speedtest.speedcheck.internet.booking.CommonUtils.formatDate
 import com.mtg.speedtest.speedcheck.internet.booking.SingletonClass
 import com.mtg.speedtest.speedcheck.internet.booking.databinding.ActDetailHottrendBinding
 import com.mtg.speedtest.speedcheck.internet.booking.model.response.TourItem
@@ -71,6 +72,8 @@ class DetailHotTrend : AppCompatActivity() {
         binding.tvRealPrice.text = CommonUtils.formatVndMoney(hotTrend.price.toString())
         binding.tvReviewCount.text = "(" + hotTrend.reviewCount.toString() + " reviews)"
         binding.tvReviewValue.text = hotTrend.reviewValue.toString()
+        binding.tvEndDate.text = "End date: " + formatDate(hotTrend.endDate)
+        binding.tvStartDate.text = "Start date: " + formatDate(hotTrend.startDate)
 
     }
 

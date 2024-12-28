@@ -16,9 +16,9 @@ data class TourItem(
     @SerializedName("description")
     var description: String?,
     @SerializedName("price")
-    var price: Int?,
+    var price: Long?,
     @SerializedName("discount")
-    var discount: Int?,
+    var discount: Long?,
     @SerializedName("quantity")
     var quantity: Int?,
     @SerializedName("favoritesValue")
@@ -27,4 +27,8 @@ data class TourItem(
     var reviewValue: Int?,
     @SerializedName("reviewCount")
     var reviewCount: Int?,
+    @SerializedName("endDate")
+    var endDate: String?,
+    @SerializedName("startDate")
+    var startDate: String?,
 ): Parcelable

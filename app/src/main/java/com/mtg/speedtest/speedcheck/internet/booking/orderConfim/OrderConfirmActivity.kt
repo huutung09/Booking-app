@@ -55,8 +55,8 @@ class OrderConfirmActivity : AppCompatActivity(){
         }
     }
 
-    private fun getTotalValue(): Int {
-        var total = 0
+    private fun getTotalValue(): Long {
+        var total = 0L
         for (item in orderData) {
             total += item.productId?.price ?: 0
         }

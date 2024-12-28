@@ -18,7 +18,8 @@ object CommonUtils {
 
 
     fun formatVndMoney(money: String) : String {
-        return String.format("%,d VND", money.toInt())
+        val amount = money.toLong()
+        return String.format("%,d VND", amount)
     }
 
     fun formatDate(dateString: String?) : String {

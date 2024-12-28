@@ -123,6 +123,24 @@
                 android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/tvStartDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="Start date: 23/01/2001"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tvEndDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="End date: 23/01/2001"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <TextView
                 android:id="@+id/tvDescriptionHotTrendDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
