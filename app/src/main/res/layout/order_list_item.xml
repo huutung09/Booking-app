@@ -45,7 +45,7 @@
 
         <!-- Order ID -->
         <TextView
-            android:id="@+id/tvOrderId"
+            android:id="@+id/tvOrderName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Order code #403835245"
@@ -61,7 +61,7 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:background="#333333"
-            app:layout_constraintTop_toBottomOf="@id/tvOrderId"
+            app:layout_constraintTop_toBottomOf="@id/tvOrderName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="8dp" />
@@ -74,7 +74,7 @@
             android:text="Total amount"
             android:textColor="#BBBBBB"
             android:textSize="14sp"
-            app:layout_constraintTop_toBottomOf="@id/tvOrderId"
+            app:layout_constraintTop_toBottomOf="@id/tvOrderName"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="16dp" />
 

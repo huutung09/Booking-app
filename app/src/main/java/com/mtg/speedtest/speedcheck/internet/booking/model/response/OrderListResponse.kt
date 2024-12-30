@@ -28,6 +28,10 @@ data class OrderData(
     var address: String?,
     @SerializedName("status")
     var status: String?,
+    @SerializedName("createdAt")
+    var createdAt: String?,
+    @SerializedName("updatedAt")
+    var updatedAt: String?,
 ): Parcelable
 
 

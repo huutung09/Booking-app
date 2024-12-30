@@ -53,19 +53,19 @@ class MenuAct : AppCompatActivity() {
             startActivity(intentPrivacy)
         }
 
-        findViewById<ImageView>(R.id.imvLanguageChinaMenu).setOnClickListener {
-            LanguageHelper.setAppLanguage(this, Locale.CHINA.language)
-            PreferManager.getInstance(this)
-                ?.write(keyBackMainScreenByLanguageScreen, true)
-            recreate()
-        }
-
-        findViewById<ImageView>(R.id.imvLanguageEnglishMenu).setOnClickListener {
-            LanguageHelper.setAppLanguage(this, Locale.ENGLISH.language)
-            PreferManager.getInstance(this)
-                ?.write(keyBackMainScreenByLanguageScreen, true)
-            recreate()
-        }
+//        findViewById<ImageView>(R.id.imvLanguageChinaMenu).setOnClickListener {
+//            LanguageHelper.setAppLanguage(this, Locale.CHINA.language)
+//            PreferManager.getInstance(this)
+//                ?.write(keyBackMainScreenByLanguageScreen, true)
+//            recreate()
+//        }
+//
+//        findViewById<ImageView>(R.id.imvLanguageEnglishMenu).setOnClickListener {
+//            LanguageHelper.setAppLanguage(this, Locale.ENGLISH.language)
+//            PreferManager.getInstance(this)
+//                ?.write(keyBackMainScreenByLanguageScreen, true)
+//            recreate()
+//        }
     }
 
     private fun initViews() {

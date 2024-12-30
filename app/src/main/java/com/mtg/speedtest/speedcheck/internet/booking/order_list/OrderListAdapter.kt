@@ -30,7 +30,8 @@ class OrderListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         with(holder) {
             with(listOrder[position]) {
-                binding.tvOrderId.text = "Order code: #${this.id}"
+                val allTourName = this.cartData?.map { it.productId?.name }
+                binding.tvOrderName.text = "Tour: " + allTourName?.joinToString(", ")
                 binding.tvTotalAmount.text = CommonUtils.formatVndMoney(this.totalAmount.toString())
                 binding.btnStatus.text = this.status
                 binding.tvDetails.setOnClickListener {
