@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="#121212"
+    android:background="@color/white"
     android:layout_marginBottom="8dp">
 
     <ImageView
@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Louis Vuitton"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:text="Túi xách vanvin"
             android:maxLines="3"
-            android:textColor="#BBBBBB"
+            android:textColor="#000000"
             android:textSize="14sp" />
     </LinearLayout>
 

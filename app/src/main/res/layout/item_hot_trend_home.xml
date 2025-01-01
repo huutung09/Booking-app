@@ -33,7 +33,7 @@
         android:layout_marginStart="10dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="Yen Tu Pagoda"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="13sp"
         app:layout_constraintStart_toEndOf="@id/cardViewImageHotTrend"
         app:layout_constraintTop_toTopOf="parent" />

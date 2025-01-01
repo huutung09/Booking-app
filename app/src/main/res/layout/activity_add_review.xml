@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/black"
+    android:background="@color/white"
     android:padding="16dp">
 
 
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:text="Add review"
             android:fontFamily="@font/montserrat_bold"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="18sp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -45,7 +45,7 @@
         android:layout_marginTop="24dp"
         android:text="Rate your experience"
         android:textSize="16sp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:fontFamily="@font/montserrat_regular" />
 
     <RatingBar
@@ -53,10 +53,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:background="@color/gray"
+        android:background="@color/white"
         android:layout_marginTop="5dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
         android:rating="2" />
 
 
@@ -67,7 +65,7 @@
         android:layout_marginTop="24dp"
         android:text="Write your review"
         android:textSize="16sp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:fontFamily="@font/montserrat_regular" />
 
     <!-- Review EditText -->
@@ -81,7 +79,7 @@
         android:gravity="top|start"
         android:hint="Share your experience..."
         android:padding="12dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textColorHint="#7f949f"
         android:textSize="14sp"
         android:inputType="textMultiLine"

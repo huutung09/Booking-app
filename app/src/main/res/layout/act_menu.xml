@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/black"
+    android:background="@color/white"
     android:orientation="vertical"
     android:paddingHorizontal="16dp">
 
@@ -27,7 +27,7 @@
             android:layout_marginStart="8dp"
             android:fontFamily="@font/montserrat_semi_bold"
             android:text="@string/menu"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="18sp" />
 
     </LinearLayout>
@@ -38,7 +38,7 @@
         android:layout_marginTop="18dp"
         android:fontFamily="@font/montserrat_semi_bold"
         android:text="@string/general"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="16sp" />
 
 <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
@@ -62,7 +62,7 @@
 <!--            android:layout_marginStart="36dp"-->
 <!--            android:fontFamily="@font/montserrat_medium"-->
 <!--            android:text="@string/language"-->
-<!--            android:textColor="@color/white"-->
+<!--            android:textColor="@color/black"-->
 <!--            app:layout_constraintBottom_toBottomOf="parent"-->
 <!--            app:layout_constraintStart_toStartOf="parent"-->
 <!--            app:layout_constraintTop_toTopOf="parent" />-->
@@ -108,7 +108,7 @@
             android:layout_marginStart="12dp"
             android:fontFamily="@font/montserrat_medium"
             android:text="@string/feedback"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
     </LinearLayout>
 
     <LinearLayout
@@ -130,7 +130,7 @@
             android:layout_marginStart="12dp"
             android:fontFamily="@font/montserrat_medium"
             android:text="@string/share"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
     </LinearLayout>
 
     <LinearLayout
@@ -152,7 +152,7 @@
             android:layout_marginStart="12dp"
             android:fontFamily="@font/montserrat_medium"
             android:text="@string/privacy_policy"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
     </LinearLayout>
 
     <LinearLayout
@@ -175,7 +175,7 @@
             android:layout_marginStart="12dp"
             android:fontFamily="@font/montserrat_medium"
             android:text="@string/this_application_is_written_by_tong_thien_quan_2023"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="11sp"/>
     </LinearLayout>
 

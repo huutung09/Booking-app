@@ -19,7 +19,7 @@ class CategorySpinnerAdapter(
         val textView = view.findViewById<TextView>(android.R.id.text1)
         textView.text = categories[position].name ?: "Unknown"
         textView.textSize = 16f
-        textView.setTextColor(ContextCompat.getColor(context, R.color.white))
+        textView.setTextColor(ContextCompat.getColor(context, R.color.black))
         return view
     }
 

@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_bold"
         android:text="User Name"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="16sp" />
 
     <RatingBar
@@ -33,7 +33,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/montserrat_regular"
         android:text="This is a sample review text."
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="14sp"
         android:layout_marginTop="8dp" />
 </LinearLayout>

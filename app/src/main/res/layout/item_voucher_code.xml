@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:background="#222222"
+    android:background="@color/white"
     android:padding="12dp"
     >
 
@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:text="MDG334"
             android:textSize="16sp"
-            android:textColor="@android:color/white"
+            android:textColor="@color/black"
             android:textStyle="bold" />
 
         <TextView
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:text="Giảm 40% cho toàn bộ một..."
             android:textSize="12sp"
-            android:textColor="#CCCCCC" />
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/tvExpiry"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:text="HSD: 30/06/2021"
             android:textSize="12sp"
-            android:textColor="#CCCCCC" />
+            android:textColor="@color/black" />
     </LinearLayout>
 
     <!-- Radio Button -->
