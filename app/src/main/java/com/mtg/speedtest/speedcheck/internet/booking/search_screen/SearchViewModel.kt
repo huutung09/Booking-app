@@ -29,7 +29,7 @@ class SearchViewModel(application: Application) : AndroidViewModel(application) 
                 } else {
                     searchText
                 }
-                ApiClient.instance.getTourByName(1, 10, searchValue, minPrice, maxPrice, selectedCategory).enqueue(object:
+                ApiClient.instance.getTourByName( searchValue, minPrice, maxPrice, selectedCategory).enqueue(object:
                     Callback<TourResponse> {
                     override fun onResponse(call: Call<TourResponse>, response: Response<TourResponse>) {
                         if (response.body()?.success.toBoolean()) {

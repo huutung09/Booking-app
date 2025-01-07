@@ -58,7 +58,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     fun getTourList(context: Context) {
         viewModelScope.launch {
             try {
-                ApiClient.instance.getTour(1, 10).enqueue(object:
+                ApiClient.instance.getTour().enqueue(object:
                     Callback<TourResponse> {
                     override fun onResponse(call: Call<TourResponse>, response: Response<TourResponse>) {
                         if (response.body()?.success.toBoolean()) {

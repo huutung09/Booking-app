@@ -35,8 +35,6 @@ interface ApiService {
 
     @GET("product/get-all")
     fun getTour(
-        @Query("page") page: Int?,
-        @Query("limit") limit: Int?,
     ): Call<TourResponse>
 
     @POST("cart")
@@ -51,8 +49,6 @@ interface ApiService {
 
     @GET("product/get-all")
     fun getTourByName(
-        @Query("page") page: Int?,
-        @Query("limit") limit: Int?,
         @Query("name") name: String?,
         @Query("priceMin") priceMin: Int?,
         @Query("priceMax") priceMax: Int?,
@@ -86,8 +82,6 @@ interface ApiService {
 
     @GET("product/get-all")
     fun getTourByCategory(
-        @Query("page") page: Int?,
-        @Query("limit") limit: Int?,
         @Query("category") category: String,
     ): Call<TourResponse>
 

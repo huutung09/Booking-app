@@ -21,7 +21,7 @@ class DetailCategoryViewModel(application: Application) : AndroidViewModel(appli
     fun getTourList(context: Context, categoryId: String) {
         viewModelScope.launch {
             try {
-                ApiClient.instance.getTourByCategory(1, 10, categoryId).enqueue(object:
+                ApiClient.instance.getTourByCategory(categoryId).enqueue(object:
                     Callback<TourResponse> {
                     override fun onResponse(call: Call<TourResponse>, response: Response<TourResponse>) {
                         if (response.body()?.success.toBoolean()) {
