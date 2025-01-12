@@ -25,7 +25,7 @@
         android:fontFamily="@font/montserrat_medium"
         android:hint="@string/enter_your_first_name"
         android:paddingStart="20dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="16sp" />
 
     <EditText
@@ -37,7 +37,7 @@
         android:fontFamily="@font/montserrat_medium"
         android:hint="Enter your phonenumber"
         android:paddingStart="20dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="16sp" />
 
     <EditText
@@ -49,7 +49,7 @@
         android:fontFamily="@font/montserrat_medium"
         android:hint="Enter your address"
         android:paddingStart="20dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="16sp" />
     <EditText
         android:id="@+id/edtEmailRegister"
@@ -60,7 +60,7 @@
         android:fontFamily="@font/montserrat_medium"
         android:hint="@string/enter_your_email"
         android:paddingStart="20dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="16sp" />
 
     <EditText
@@ -73,7 +73,7 @@
         android:hint="@string/enter_password"
         android:inputType="textPassword"
         android:paddingStart="20dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="16sp" />
 
     <EditText
@@ -86,7 +86,7 @@
         android:hint="@string/enter_confirm_password"
         android:inputType="textPassword"
         android:paddingStart="20dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="16sp" />
 
     <TextView
